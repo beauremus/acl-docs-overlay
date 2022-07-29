@@ -27,6 +27,7 @@ commandSections.forEach((commandSectionMatch) => {
 doc.innerHTML = resultDoc;
 
 /* Append new CSS to head */
+// This idea comes from https://alvarotrigo.com/blog/change-css-javascript/#4.-append-and-remove-css-stylesheets-dynamically
 // Create the style element
 function createStyleElement(id, content) {
   const style = document.createElement("style");
