@@ -11,14 +11,14 @@ document.body.innerHTML = `<main><div>${document.body.innerHTML}</div></main>`;
 /* Get commands and link them */
 // Yes, I know this is already defined above, but removing this breaks things...
 doc = document.querySelector("pre");
-commandSection = /(-{79}\s+)(\w+)( : )([\w\W]+?\n(?=-))/g;
+const commandSection = /(-{79}\s+)(\w+)( : )([\w\W]+?\n(?=-))/g;
 
-commandSections = [...doc.textContent.matchAll(commandSection)];
+const commandSections = [...doc.textContent.matchAll(commandSection)];
 
-resultDoc = doc.textContent;
+let resultDoc = doc.textContent;
 
 commandSections.forEach((commandSectionMatch) => {
-  reg = new RegExp(
+  const reg = new RegExp(
     `(-{79}\\s+)(${commandSectionMatch[2]})( : [\\w\\W]+?\\n(?=-))`
   );
   resultDoc = resultDoc.replace(reg, '$1<section id="$2">$2$3</section>\n');
@@ -167,23 +167,23 @@ const sortByIndex = (index) => {
   };
 };
 
-sortedCommandSections = commandSections.sort(sortByIndex(2));
+const sortedCommandSections = commandSections.sort(sortByIndex(2));
 
 for (let column = 0; column < numberOfNavColumns; column++) {
-  nav = document.createElement("nav");
+  const nav = document.createElement("nav");
   nav.className = "section-nav";
-  ol = document.createElement("ol");
-  commandsPerColumn = sortedCommandSections.length / numberOfNavColumns;
-  startIndex = Math.ceil(column * commandsPerColumn);
+  const ol = document.createElement("ol");
+  const commandsPerColumn = sortedCommandSections.length / numberOfNavColumns;
+  const startIndex = Math.ceil(column * commandsPerColumn);
 
   for (
     let index = startIndex;
     index < commandsPerColumn * (column + 1);
     index++
   ) {
-    commandSectionMatch = sortedCommandSections[index];
-    li = document.createElement("li");
-    a = document.createElement("a");
+    const commandSectionMatch = sortedCommandSections[index];
+    const li = document.createElement("li");
+    const a = document.createElement("a");
     a.href = `#${commandSectionMatch[2]}`;
     a.textContent = commandSectionMatch[2];
     li.appendChild(a);
@@ -241,19 +241,19 @@ document.addEventListener("change", (event) => {
     return;
   }
 
-  activeSectionTitles = document.querySelectorAll("nav li.active");
-  Array.from(document.querySelectorAll("nav li.active")).map((node) => {
-    section = document.querySelector(`section#${node.textContent}`);
+  const activeSectionTitles = document.querySelectorAll("nav li.active");
+  Array.from(activeSectionTitles).map((node) => {
+    const section = document.querySelector(`section#${node.textContent}`);
     markedNodes.push(section);
 
-    matches = section.textContent.matchAll(new RegExp(event.target.value, "g"));
-    markedText = section.textContent;
+    const matches = section.textContent.matchAll(new RegExp(event.target.value, "g"));
+    let markedText = section.textContent;
 
     Array.from(matches)
       .reverse()
       .forEach((match) => {
-        startIndex = match["index"];
-        endIndex = startIndex + event.target.value.length;
+        const startIndex = match["index"];
+        const endIndex = startIndex + event.target.value.length;
         markedText = markedText
           .splice(endIndex, 0, "</mark>")
           .splice(startIndex, 0, "<mark>");
