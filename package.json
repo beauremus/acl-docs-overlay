@@ -1,0 +1,23 @@
+{
+  "name": "acl-docs-overlay",
+  "version": "1.0.0",
+  "description": "Added functionality to ACL documentation.",
+  "main": "acl-docs-overlay.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ACL",
+    "JavaScript",
+    "observer"
+  ],
+  "author": "Beau Harrison <beau@fnal.gov>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beauremus/acl-docs-overlay.git"
+  }
+}
