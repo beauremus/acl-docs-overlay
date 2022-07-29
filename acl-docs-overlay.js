@@ -246,7 +246,9 @@ document.addEventListener("change", (event) => {
     const section = document.querySelector(`section#${node.textContent}`);
     markedNodes.push(section);
 
-    const matches = section.textContent.matchAll(new RegExp(event.target.value, "g"));
+    const matches = section.textContent.matchAll(
+      new RegExp(event.target.value, "g")
+    );
     let markedText = section.textContent;
 
     Array.from(matches)
